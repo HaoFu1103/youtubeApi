@@ -1,6 +1,34 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Youtube API 
 
-## Available Scripts
+This project is created by react and styled with material ui and youtube v3 api to fetch the real time data. This is implemented for props passing and class-based 
+and function-based component.
+
+## Featured code snippet
+ There are three main components to implement this project, which are <b>search bar</b>, <b>video detail</b> and <b>video item</b>.
+  ```
+  <SearchBar onFormSubmit={this.handleSubmit}/>
+  ``` 
+  ```
+  <VideoDetail video={selectedVideo}/>
+  ```
+  ```
+  <VideoList videos={videos} onVideoSelect={this.onVideoSelect}/>
+  ```
+ Below is the code managed to handle the search in youtube api.
+ ```
+ handleSubmit = async (searchTerm) => {
+        const response = await youtube.get('search', { 
+            params: {
+                part: 'snippet',
+                maxResults: 5,
+                key: '[API Key]',
+                q: searchTerm,
+            }
+        });
+        this.setState({ videos: response.data.items, selectedVideo: response.data.items[0] });
+        console.log(response.data.items);
+    }
+ ```
 
 In the project directory, you can run:
 
